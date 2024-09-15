@@ -3,7 +3,8 @@ const User = require('../models/Users');
 
 // protected miidleware
 async function authenticateJWT(req, res, next) {
-  const token = req.cookies["token"];
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.startsWith("Bearer ") ? authHeader.split(" ")[1] : null;
   if (token) {
     try {
       const decoded = verifyToken(token);

@@ -70,7 +70,10 @@ const login = async (req, res) => {
       secure: process.env.NODE_ENV === "production",
     });
 
-    res.send("Login successful");
+    res.status(200).json({
+      message: "Login successful",
+      token
+    });
   } catch (error) {
     console.log(error.message);
     res.json({

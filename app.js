@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors');
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
@@ -14,13 +15,13 @@ const {
   updateBlog,
   getUsersBlog,
 } = require("./controllers/BlogController");
-const { verifyToken } = require("./utils/jwtUtils");
 
 const PORT = process.env.PORT || 8000;
 
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors())
 
 
 app.post("/signup", signup);
